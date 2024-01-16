@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #element {
+            width: 100px;
+            height: 100px;
+            background-color: greenyellow;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="element"></div>
+
+    <script>
+        /*
+        Завдання:
+        Внесіть зміни до сценарію. Зробіть так, щоб за затиснутої клавіші Shift та натисканні стрілок на
+        клавіатурі, елемент по сторінці рухався вдвічі швидше, ніж просто під час натискання на стрілки.
+        */
+        let div = document.querySelector("#element");
+        let distance = 10;
+
+        document.addEventListener("keydown", function (e) {
+            let isShiftPressed = e.shiftKey;
+            switch (e.code) {
+                case "ArrowLeft":
+                    moveLeft(div, distance,isShiftPressed);
+                    break;
+                case "ArrowRight":
+                    moveRight(div, distance,isShiftPressed);
+                    break;
+                case "ArrowUp":
+                    moveUp(div, distance,isShiftPressed);
+                    break;
+                case "ArrowDown":
+                    moveDown(div, distance,isShiftPressed);
+                    break;
+            }
+        });
+
+        function moveUp(element, distance,isShiftPressed) {
+            let top = getComputedStyle(element).top;
+            element.style.top = parseInt(top) -  (isShiftPressed ? 2 * distance : distance) + "px";
+        }
+
+        function moveDown(element, distance,isShiftPressed) {
+            let top = getComputedStyle(element).top;
+            element.style.top = parseInt(top) +  (isShiftPressed ? 2 * distance : distance) + "px";
+        }
+
+        function moveLeft(element, distance,isShiftPressed) {
+            let left = getComputedStyle(element).left;
+            element.style.left = parseInt(left) -  (isShiftPressed ? 2 * distance : distance) + "px";
+        }
+
+        function moveRight(element, distance,isShiftPressed) {
+            let left = getComputedStyle(element).left;
+            element.style.left = parseInt(left) +  (isShiftPressed ? 2 * distance : distance) + "px";
+        }
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
